@@ -13,12 +13,17 @@ import {
 import CommentCountBadge from './components/CommentCountBadge';
 import CommentSection from './components/CommentSection';
 
-function PostPage() {
-  const { userDetail } = useContext(UserDetailContext);
+function PostPage() {  const { userDetail } = useContext(UserDetailContext);
   const posts = useQuery(api.posts.getAllPosts);
   const createPost = useMutation(api.posts.createPost);
   const likePost = useMutation(api.posts.likePost);
   const deletePost = useMutation(api.posts.deletePost);
+  
+  // Get the posts liked by the current user - always call useQuery but with skip parameter
+  // This ensures hook order remains consistent between renders
+  const userLikes = useQuery(api.posts.getUserLikes, 
+    userDetail ? { userId: userDetail.uid } : { skip: true }
+  );
   
   // Comment-related mutations and queries
   const addComment = useMutation(api.comments.addComment);
@@ -388,7 +393,7 @@ function PostPage() {
       setIsSubmitting(false);
     }
   };
-    // Handler for liking a post
+  // Handler for liking a post
   const handleLikePost = async (postId) => {    
     if (!userDetail) {
       alert('Please log in to like posts');
@@ -396,7 +401,10 @@ function PostPage() {
     }
     
     try {
-      await likePost({ id: postId });
+      await likePost({ 
+        id: postId,
+        userId: userDetail.uid
+      });
     } catch (error) {
       console.error('Error liking post:', error);
     }
@@ -839,18 +847,17 @@ function PostPage() {
                 )}
                   <div className="mt-5 pt-4 border-t border-gray-100">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-6">
-                      <button 
+                    <div className="flex items-center space-x-6">                      <button 
                         onClick={() => handleLikePost(post._id)} 
-                        className="flex items-center space-x-2 text-gray-700 hover:text-green-600 transition-colors group"
+                        className={`flex items-center space-x-2 transition-colors group ${userLikes && userLikes[post._id] ? 'text-green-600' : 'text-gray-700 hover:text-green-600'}`}
                       >
-                        <div className="p-2 rounded-full bg-gray-50 group-hover:bg-green-50 transition-colors">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className={`p-2 rounded-full transition-colors ${userLikes && userLikes[post._id] ? 'bg-green-50' : 'bg-gray-50 group-hover:bg-green-50'}`}>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill={userLikes && userLikes[post._id] ? "currentColor" : "none"} viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905v.714L7.5 9h-3a2 2 0 00-2 2v.5" />
                           </svg>
                         </div>
                         <span className="font-medium">{post.likes || 0}</span>
-                      </button>                      <button 
+                      </button><button 
                         onClick={() => toggleComments(post._id)} 
                         className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors group"
                       >

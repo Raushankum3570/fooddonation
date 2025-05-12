@@ -70,21 +70,54 @@ export const getPostById = query({
   },
 });
 
-// Like a post
+// Like a post - toggle like/unlike for a specific user on a post
 export const likePost = mutation({
-  args: { id: v.id("posts") },
+  args: { 
+    id: v.id("posts"),
+    userId: v.string()
+  },
   handler: async (ctx, args) => {
+    // Check if post exists
     const post = await ctx.db.get(args.id);
     if (!post) {
       throw new Error("Post not found");
     }
     
-    // Increment the likes count
-    await ctx.db.patch(args.id, {
-      likes: (post.likes || 0) + 1,
-    });
+    // Check if user already liked this post
+    const existingLike = await ctx.db
+      .query("likes")
+      .filter((q) => q.and(
+        q.eq(q.field("userId"), args.userId),
+        q.eq(q.field("postId"), args.id)
+      ))
+      .first();
     
-    return { success: true };
+    // Toggle like/unlike based on existence
+    if (existingLike) {
+      // User already liked this post, so unlike it
+      await ctx.db.delete(existingLike._id);
+      
+      // Decrement the likes count
+      await ctx.db.patch(args.id, {
+        likes: Math.max(0, (post.likes || 1) - 1), // Prevent negative likes
+      });
+      
+      return { success: true, liked: false };
+    } else {
+      // User hasn't liked this post yet, so like it
+      await ctx.db.insert("likes", {
+        userId: args.userId,
+        postId: args.id,
+        createdAt: Date.now(),
+      });
+      
+      // Increment the likes count
+      await ctx.db.patch(args.id, {
+        likes: (post.likes || 0) + 1,
+      });
+      
+      return { success: true, liked: true };
+    }
   },
 });
 
@@ -106,4 +139,32 @@ export const deletePost = mutation({
     await ctx.db.delete(args.id);
     return { success: true };
   },
+});
+
+// Get all posts liked by a specific user
+export const getUserLikes = query({
+  args: { 
+    userId: v.optional(v.string()),
+    skip: v.optional(v.boolean())
+  },
+  handler: async (ctx, args) => {
+    // If skip is true or userId is not provided, return empty object
+    if (args.skip || !args.userId) {
+      return {};
+    }
+    
+    // Fetch all likes by this user
+    const likes = await ctx.db
+      .query("likes")
+      .filter((q) => q.eq(q.field("userId"), args.userId))
+      .collect();
+    
+    // Create a map for easy lookup
+    const likedPostsMap = {};
+    likes.forEach(like => {
+      likedPostsMap[like.postId] = true;
+    });
+    
+    return likedPostsMap;
+  }
 });

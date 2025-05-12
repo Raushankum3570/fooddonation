@@ -48,8 +48,7 @@ export default defineSchema({
         category: v.optional(v.string()), // Type of food donation
         location: v.optional(v.string()), // Location of donation
         createdAt: v.number(), // Timestamp for when the post was created
-    }),
-    // Table for post comments
+    }),    // Table for post comments
     comments: defineTable({
         postId: v.id("posts"), // References the post this comment belongs to
         userId: v.string(), // User who made the comment
@@ -57,5 +56,11 @@ export default defineSchema({
         userPicture: v.optional(v.string()), // User's profile picture
         content: v.string(), // The comment text
         createdAt: v.number(), // When the comment was created
+    }),
+    // Table to track user likes per post
+    likes: defineTable({
+        userId: v.string(), // User who liked the post
+        postId: v.id("posts"), // Post that was liked
+        createdAt: v.number(), // When the like was created
     })
 });
