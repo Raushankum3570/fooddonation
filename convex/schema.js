@@ -36,5 +36,26 @@ export default defineSchema({
         quantity: v.number(),
         status: v.optional(v.string()), // "pending", "approved", "fulfilled", etc.
         createdAt: v.number(),
+    }),    // Table for food donation posts
+    posts: defineTable({
+        title: v.string(),
+        content: v.string(),
+        imageUrl: v.optional(v.string()),
+        userId: v.string(), // References users table
+        userName: v.string(), // Store the user's name for display
+        userPicture: v.optional(v.string()), // Store the user's profile picture
+        likes: v.optional(v.number()), // Number of likes
+        category: v.optional(v.string()), // Type of food donation
+        location: v.optional(v.string()), // Location of donation
+        createdAt: v.number(), // Timestamp for when the post was created
+    }),
+    // Table for post comments
+    comments: defineTable({
+        postId: v.id("posts"), // References the post this comment belongs to
+        userId: v.string(), // User who made the comment
+        userName: v.string(), // User's display name
+        userPicture: v.optional(v.string()), // User's profile picture
+        content: v.string(), // The comment text
+        createdAt: v.number(), // When the comment was created
     })
 });

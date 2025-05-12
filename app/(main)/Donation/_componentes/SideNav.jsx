@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-import { GitPullRequest, HandCoins, LayoutDashboard, Soup, UserPen, ChevronLeft, Bell, HelpCircle, LogOut, Heart, Menu } from 'lucide-react'
+import { GitPullRequest, HandCoins, LayoutDashboard, Soup, UserPen, ChevronLeft, Bell, HelpCircle, LogOut, Heart, Menu, StickyNote, MessageSquareDiff } from 'lucide-react'
 import { useParams, usePathname, useRouter } from 'next/navigation'
 
 function SideNav() {
@@ -60,7 +60,14 @@ function SideNav() {
       name: 'Profiles',
       icons: UserPen,
       path: '/Donation/profiles'
-    }
+    },
+     {
+      id: 6,
+      name: 'Post',
+      icons: MessageSquareDiff,
+      path: '/Donation/post'
+    },
+      
   ];
 
   const path = usePathname();

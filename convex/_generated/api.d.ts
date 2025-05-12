@@ -13,9 +13,12 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as commentCount from "../commentCount.js";
+import type * as comments from "../comments.js";
 import type * as donations from "../donations.js";
 import type * as foodRequests from "../foodRequests.js";
 import type * as moneyDonations from "../moneyDonations.js";
+import type * as posts from "../posts.js";
 import type * as users from "../users.js";
 
 /**
@@ -27,9 +30,12 @@ import type * as users from "../users.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  commentCount: typeof commentCount;
+  comments: typeof comments;
   donations: typeof donations;
   foodRequests: typeof foodRequests;
   moneyDonations: typeof moneyDonations;
+  posts: typeof posts;
   users: typeof users;
 }>;
 export declare const api: FilterApi<
