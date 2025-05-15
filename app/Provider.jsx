@@ -37,7 +37,7 @@ function Provider({children}) {
                 <UserDetailContext.Provider value={{userDetail, setUserDetail}}>
                 
 
-                        <Header/>
+                        
                         
                         {children}
                         

@@ -100,9 +100,37 @@ export default function Hero() {
     }
   };
 
-  return (
-    <div className="bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+  return (    
+    <div className="bg-gradient-to-b from-white via-blue-50 to-white relative overflow-hidden">
+      {/* Enhanced decorative elements with animations */}
+      <motion.div 
+        className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-blue-100/40 rounded-full blur-3xl -mr-48 -mt-24 z-0"
+        animate={{ 
+          scale: [1, 1.05, 1],
+          opacity: [0.4, 0.5, 0.4]
+        }}
+        transition={{ 
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      ></motion.div>
+      <motion.div 
+        className="absolute top-1/3 left-0 w-[35rem] h-[35rem] bg-indigo-100/40 rounded-full blur-3xl -ml-24 z-0"
+        animate={{ 
+          scale: [1, 1.08, 1],
+          opacity: [0.3, 0.4, 0.3]
+        }}
+        transition={{ 
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1
+        }}
+      ></motion.div>
+      <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-cyan-100/30 rounded-full blur-3xl z-0 opacity-60"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 relative z-10">
         {/* Main Hero Section */}
         <div className="flex flex-col lg:flex-row items-center lg:space-x-16">
           {/* Hero Content */}
@@ -114,17 +142,51 @@ export default function Hero() {
           >
             <motion.div 
               variants={fadeIn}
-              className="inline-block px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-medium mb-2"
+              className="inline-block px-4 py-1.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-sm font-medium mb-4 shadow-md relative overflow-hidden group"
             >
-              Make a difference today
+              <span className="relative z-10 flex items-center">
+                <svg className="w-4 h-4 mr-2 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 16L7 11L8.4 9.55L11 12.15V4H13V12.15L15.6 9.55L17 11L12 16ZM6 20C5.45 20 4.97917 19.8042 4.5875 19.4125C4.19583 19.0208 4 18.55 4 18V15H6V18H18V15H20V18C20 18.55 19.8042 19.0208 19.4125 19.4125C19.0208 19.8042 18.55 20 18 20H6Z" fill="currentColor"/>
+                </svg>
+                Make a difference today
+              </span>
+              <span className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
             </motion.div>
-            
-            <motion.h1 
+              <motion.h1 
               variants={fadeIn}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
             >
-              <span className="text-blue-600">Share</span> Food,
-              <span className="block mt-1">Spread <span className="text-blue-600">Hope</span></span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700 relative inline-block">
+                Share
+                <motion.span 
+                  className="absolute -top-1 -right-1 w-3 h-3 bg-blue-400 rounded-full"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.7, 1, 0.7]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </span> Food,
+              <span className="block mt-2">Spread <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700 relative inline-block">
+                Hope
+                <motion.span 
+                  className="absolute -bottom-1 -right-1 w-3 h-3 bg-blue-400 rounded-full"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.7, 1, 0.7]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                />
+              </span></span>
             </motion.h1>
             
             <motion.p 
@@ -136,24 +198,45 @@ export default function Hero() {
             
             <motion.div 
               variants={fadeIn}
-              className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 pt-2"
+              className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 pt-4"
             >
               <motion.button 
                 onClick={handleDonateClick}
-                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all shadow-lg shadow-blue-100 hover:shadow-blue-200"
+                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold rounded-lg transition-all shadow-xl relative overflow-hidden group"
                 variants={buttonHover}
                 whileHover="hover"
                 whileTap={{ scale: 0.98 }}
               >
-                Donate Now
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
+                <span className="relative z-10 flex items-center justify-center">
+                  <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4.79L6 7.395V10.5C6 13.517 7.684 16.326 10.5 17.646C11.646 18.217 12.354 18.217 13.5 17.646C16.316 16.326 18 13.517 18 10.5V7.395L12 4.79ZM12 3L19 6V10.5C19 14 17.023 17.23 14 18.694C13 19.232 11 19.232 10 18.694C6.977 17.23 5 14 5 10.5V6L12 3ZM12 12C10.9 12 10 11.1 10 10C10 8.9 10.9 8 12 8C13.1 8 14 8.9 14 10C14 11.1 13.1 12 12 12ZM12 6.5C10.07 6.5 8.5 8.07 8.5 10C8.5 11.93 10.07 13.5 12 13.5C13.93 13.5 15.5 11.93 15.5 10C15.5 8.07 13.93 6.5 12 6.5Z" fill="currentColor"/>
+                  </svg>
+                  Donate Now
+                  <motion.span 
+                    className="absolute -right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:right-3 transition-all duration-300"
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                      <path d="M13.172 12L8.22198 7.05L9.63598 5.636L16 12L9.63598 18.364L8.22198 16.95L13.172 12Z" fill="currentColor"/>
+                    </svg>
+                  </motion.span>
+                </span>
               </motion.button>
               <motion.button 
-                className="px-8 py-4 border-2 border-gray-200 text-gray-700 font-bold rounded-lg hover:bg-gray-50 transition-all"
+                className="px-8 py-4 border-2 border-blue-200 text-blue-700 font-bold rounded-lg transition-all hover:bg-blue-50 relative overflow-hidden group"
                 variants={buttonHover}
                 whileHover="hover"
                 whileTap={{ scale: 0.98 }}
               >
-                Learn More
+                <span className="absolute inset-0 w-0 bg-blue-100 group-hover:w-full transition-all duration-300 ease-in-out z-0"></span>
+                <span className="relative z-10 flex items-center">
+                  <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22C6.477 22 2 17.523 2 12C2 6.477 6.477 2 12 2ZM12 4C7.582 4 4 7.582 4 12C4 16.418 7.582 20 12 20C16.418 20 20 16.418 20 12C20 7.582 16.418 4 12 4ZM11 7H13V13H11V7ZM11 15H13V17H11V15Z" fill="currentColor"/>
+                  </svg>
+                  Learn More
+                </span>
               </motion.button>
             </motion.div>
           </motion.div>
@@ -166,64 +249,117 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <motion.div 
-              className="relative h-[450px] w-full rounded-xl overflow-hidden shadow-xl"
+              className="relative h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl"
               whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
             >
-              <Image
-                src="/hero.jpg"
-                alt="People donating food"
-                fill
-                style={{ objectFit: "cover" }}
-                priority
-                className="rounded-xl"
-              />
+              {/* Decorative elements */}
+              <div className="absolute -top-12 -right-12 w-24 h-24 bg-blue-400/30 rounded-full blur-xl z-10"></div>
+              <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-indigo-400/30 rounded-full blur-xl z-10"></div>
+              
+              {/* Image wrapper with mask effect */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-500/30 mix-blend-multiply z-10"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                ></motion.div>
+                <Image
+                  src="/hero.jpg"
+                  alt="People donating food"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  priority
+                  className="rounded-2xl scale-105 hover:scale-100 transition-all duration-700 ease-in-out"
+                />
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                ></motion.div>
+              </div>
+              
+              {/* Floating stats card */}
               <motion.div 
-                className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              ></motion.div>
+                className="absolute bottom-6 left-6 right-6 text-white"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+              >
+                <div className="bg-white/10 backdrop-blur-md p-5 rounded-xl flex items-center gap-3 shadow-2xl border border-white/20">
+                  <div className="p-3 bg-blue-600 rounded-full shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-xs text-blue-200 font-medium mb-1">IMPACT THIS MONTH</div>
+                    <span className="font-bold text-lg">10,000+ meals donated</span>
+                  </div>
+                  
+                  <motion.div
+                    className="ml-auto bg-blue-500/30 h-12 w-12 rounded-full flex items-center justify-center"
+                    whileHover={{ scale: 1.1, rotate: 10 }}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </motion.div>
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
-        
         {/* Impact Stats */}
         <motion.div 
-          className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-10"
+          id="impact"
+          className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-10 pt-10 scroll-mt-24"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={staggerChildren}
         >
           <motion.div 
-            className="bg-white p-8 rounded-lg border border-gray-100 shadow-sm text-center hover:shadow-md transition-all"
+            className="bg-white p-8 rounded-xl border border-blue-100 shadow-lg text-center hover:shadow-xl transition-all relative overflow-hidden"
             variants={scaleUp}
-            whileHover={{ y: -5, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)" }}
+            whileHover={{ y: -8, boxShadow: "0px 15px 30px rgba(59, 130, 246, 0.2)" }}
           >
-            <span className="text-5xl font-bold text-blue-600">2M+</span>
-            <p className="mt-3 text-gray-600 font-medium">Meals Donated</p>
+            <div className="absolute -top-6 -right-6 w-20 h-20 bg-blue-50 rounded-full opacity-70"></div>
+            <div className="relative">
+              <span className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-blue-500 to-blue-700">2M+</span>
+              <p className="mt-3 text-gray-700 font-semibold">Meals Donated</p>
+              <div className="w-16 h-1 bg-blue-500 mx-auto mt-4 rounded-full"></div>
+            </div>
           </motion.div>
           <motion.div 
-            className="bg-white p-8 rounded-lg border border-gray-100 shadow-sm text-center hover:shadow-md transition-all"
+            className="bg-white p-8 rounded-xl border border-blue-100 shadow-lg text-center hover:shadow-xl transition-all relative overflow-hidden"
             variants={scaleUp}
-            whileHover={{ y: -5, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)" }}
+            whileHover={{ y: -8, boxShadow: "0px 15px 30px rgba(59, 130, 246, 0.2)" }}
           >
-            <span className="text-5xl font-bold text-blue-600">500+</span>
-            <p className="mt-3 text-gray-600 font-medium">Partner Organizations</p>
+            <div className="absolute -top-6 -right-6 w-20 h-20 bg-blue-50 rounded-full opacity-70"></div>
+            <div className="relative">
+              <span className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-blue-500 to-blue-700">500+</span>
+              <p className="mt-3 text-gray-700 font-semibold">Partner Organizations</p>
+              <div className="w-16 h-1 bg-blue-500 mx-auto mt-4 rounded-full"></div>
+            </div>
           </motion.div>
           <motion.div 
-            className="bg-white p-8 rounded-lg border border-gray-100 shadow-sm text-center hover:shadow-md transition-all"
+            className="bg-white p-8 rounded-xl border border-blue-100 shadow-lg text-center hover:shadow-xl transition-all relative overflow-hidden"
             variants={scaleUp}
-            whileHover={{ y: -5, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)" }}
+            whileHover={{ y: -8, boxShadow: "0px 15px 30px rgba(59, 130, 246, 0.2)" }}
           >
-            <span className="text-5xl font-bold text-blue-600">50K+</span>
-            <p className="mt-3 text-gray-600 font-medium">Families Helped</p>
+            <div className="absolute -top-6 -right-6 w-20 h-20 bg-blue-50 rounded-full opacity-70"></div>
+            <div className="relative">
+              <span className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-blue-500 to-blue-700">50K+</span>
+              <p className="mt-3 text-gray-700 font-semibold">Families Helped</p>
+              <div className="w-16 h-1 bg-blue-500 mx-auto mt-4 rounded-full"></div>
+            </div>
           </motion.div>
-        </motion.div>
-        
-        {/* Newsletter / Get Involved */}
+        </motion.div>        {/* Newsletter / Get Involved */}
         <motion.div 
-          className="mt-24 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-10 md:p-14 shadow-xl relative overflow-hidden"
+          id="join"
+          className="mt-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-3xl p-10 md:p-14 shadow-2xl relative overflow-hidden border border-white/50 pt-10 scroll-mt-24"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -231,7 +367,7 @@ export default function Hero() {
         >
           {/* Decorative elements */}
           <motion.div 
-            className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-200/30 to-indigo-300/30 rounded-full -mr-20 -mt-20"
+            className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-300/20 to-indigo-400/20 rounded-full -mr-24 -mt-24 backdrop-blur-3xl"
             animate={{ 
               scale: [1, 1.05, 1],
               rotate: [0, 5, 0],
@@ -243,7 +379,7 @@ export default function Hero() {
             }}
           />
           <motion.div 
-            className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-blue-200/20 to-purple-200/20 rounded-full -ml-10 -mb-10"
+            className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-blue-300/20 to-purple-300/20 rounded-full -ml-20 -mb-20 backdrop-blur-3xl"
             animate={{ 
               scale: [1, 1.1, 1],
               rotate: [0, -5, 0],
@@ -255,10 +391,40 @@ export default function Hero() {
               delay: 1
             }}
           />
+          <motion.div 
+            className="absolute top-1/2 left-1/4 w-20 h-20 bg-white/30 rounded-full backdrop-blur-md"
+            animate={{ 
+              y: [0, -15, 0],
+              x: [0, 10, 0],
+              opacity: [0.5, 0.8, 0.5]
+            }}
+            transition={{ 
+              duration: 5, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
           
           <div className="text-center max-w-3xl mx-auto relative z-10">
+            <motion.div 
+              className="inline-block mb-4"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+            >
+              <div className="bg-white/80 backdrop-blur-sm p-2 rounded-full inline-flex items-center gap-2 shadow-lg">
+                <div className="bg-blue-600 p-1.5 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                  </svg>
+                </div>
+                <span className="text-sm font-medium text-gray-800 pr-1.5">Stay Updated</span>
+              </div>
+            </motion.div>
+            
             <motion.h2 
-              className="text-3xl md:text-4xl font-bold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-700"
+              className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -267,7 +433,7 @@ export default function Hero() {
               Join Our Mission
             </motion.h2>
             <motion.p 
-              className="mt-4 text-lg text-gray-600 leading-relaxed"
+              className="mt-4 text-lg text-gray-700 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -290,20 +456,20 @@ export default function Hero() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email address"
                   required
-                  className="w-full px-5 py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm border border-gray-100"
+                  className="w-full px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md border border-white bg-white/80 backdrop-blur-sm"
                 />
                 <motion.span 
-                  className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/20 to-indigo-500/20 opacity-0"
+                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400/10 to-indigo-500/10 opacity-0 pointer-events-none"
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 />
               </motion.div>
               <motion.button 
                 type="submit"
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                 whileHover={{ 
                   scale: 1.03,
-                  boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.4)"
+                  boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.6)"
                 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -314,7 +480,7 @@ export default function Hero() {
               </motion.button>
             </motion.form>
             <motion.p 
-              className="text-sm text-gray-500 mt-4"
+              className="text-sm text-gray-600 mt-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -324,9 +490,8 @@ export default function Hero() {
             </motion.p>
           </div>
         </motion.div>
-        
-        {/* Features */}
-        <div className="mt-24">
+          {/* Features */}
+        <div id="features" className="mt-24 pt-10 scroll-mt-24">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -399,20 +564,22 @@ export default function Hero() {
             </motion.div>
           </motion.div>
         </div>
-      </div>
-      
-      {/* Testimonials */}
-      <div className="bg-gray-50 py-20">
+      </div>      {/* Testimonials */}
+      <div id="testimonials" className="bg-gradient-to-b from-white to-blue-50 py-24 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="text-center mb-12"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl font-bold text-gray-900">What People Say</h2>
-            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-sm font-medium mb-4 border border-blue-100">
+              Testimonials
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">What People Say</h2>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-300 mx-auto mt-6 rounded-full"></div>
+            <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
               Our donors and volunteers share their experiences
             </p>
           </motion.div>
@@ -425,63 +592,102 @@ export default function Hero() {
             variants={staggerChildren}
           >
             <motion.div 
-              className="bg-white p-6 rounded-lg shadow-sm border border-gray-100"
+              className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500 relative overflow-hidden"
               variants={fadeIn}
-              whileHover={{ y: -10, boxShadow: "0px 15px 30px rgba(0, 0, 0, 0.1)" }}
+              whileHover={{ y: -10, boxShadow: "0px 15px 30px rgba(59, 130, 246, 0.15)" }}
             >
-              <div className="flex items-center mb-4">
-                <motion.div 
-                  className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  JD
-                </motion.div>
-                <div className="ml-3">
-                  <h4 className="font-semibold text-gray-900">Jane Doe</h4>
-                  <p className="text-gray-500 text-sm">Regular Donor</p>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 opacity-50 rounded-bl-full -mt-8 -mr-8"></div>
+              <svg className="h-8 w-8 text-blue-400 mb-4 opacity-30" fill="currentColor" viewBox="0 0 32 32">
+                <path d="M10 8c-2.209 0-4 1.791-4 4v10c0 2.209 1.791 4 4 4h12c2.209 0 4-1.791 4-4v-10c0-2.209-1.791-4-4-4h-12zM10 10h12c1.105 0 2 0.895 2 2v10c0 1.105-0.895 2-2 2h-12c-1.105 0-2-0.895-2-2v-10c0-1.105 0.895-2 2-2zM15.398 14.5c0.361 0.45 0.602 1.023 0.602 1.75 0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5c0-0.727 0.241-1.3 0.602-1.75-0.365-0.43-0.602-0.977-0.602-1.75 0-1.381 1.119-2.5 2.5-2.5s2.5 1.119 2.5 2.5c0 0.773-0.237 1.32-0.602 1.75zM18.898 14.5c0.361 0.45 0.602 1.023 0.602 1.75 0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5c0-0.727 0.241-1.3 0.602-1.75-0.365-0.43-0.602-0.977-0.602-1.75 0-1.381 1.119-2.5 2.5-2.5s2.5 1.119 2.5 2.5c0 0.773-0.237 1.32-0.602 1.75z"></path>
+              </svg>
+              <div className="flex items-center mb-6">
+                <div className="h-14 w-14 rounded-full overflow-hidden border-2 border-blue-200 shadow-inner">
+                  <motion.div 
+                    className="h-full w-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    JD
+                  </motion.div>
+                </div>
+                <div className="ml-4">
+                  <h4 className="font-semibold text-gray-900 text-lg">Jane Doe</h4>
+                  <p className="text-blue-500 text-sm font-medium">Regular Donor</p>
                 </div>
               </div>
-              <p className="text-gray-600 italic">"Donating to this organization has been one of the most rewarding experiences. Knowing I'm helping families in need means everything."</p>
+              <p className="text-gray-600">"Donating to this organization has been one of the most rewarding experiences. Knowing I'm helping families in need means everything."</p>
+              <div className="mt-4 flex">
+                {[1, 2, 3, 4, 5].map(star => (
+                  <svg key={star} className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
             </motion.div>
             
             <motion.div 
-              className="bg-white p-6 rounded-lg shadow-sm border border-gray-100"
+              className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500 relative overflow-hidden"
               variants={fadeIn}
-              whileHover={{ y: -10, boxShadow: "0px 15px 30px rgba(0, 0, 0, 0.1)" }}
+              whileHover={{ y: -10, boxShadow: "0px 15px 30px rgba(59, 130, 246, 0.15)" }}
             >
-              <div className="flex items-center mb-4">
-                <motion.div 
-                  className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  MS
-                </motion.div>
-                <div className="ml-3">
-                  <h4 className="font-semibold text-gray-900">Mark Smith</h4>
-                  <p className="text-gray-500 text-sm">Volunteer</p>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 opacity-50 rounded-bl-full -mt-8 -mr-8"></div>
+              <svg className="h-8 w-8 text-blue-400 mb-4 opacity-30" fill="currentColor" viewBox="0 0 32 32">
+                <path d="M10 8c-2.209 0-4 1.791-4 4v10c0 2.209 1.791 4 4 4h12c2.209 0 4-1.791 4-4v-10c0-2.209-1.791-4-4-4h-12zM10 10h12c1.105 0 2 0.895 2 2v10c0 1.105-0.895 2-2 2h-12c-1.105 0-2-0.895-2-2v-10c0-1.105 0.895-2 2-2zM15.398 14.5c0.361 0.45 0.602 1.023 0.602 1.75 0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5c0-0.727 0.241-1.3 0.602-1.75-0.365-0.43-0.602-0.977-0.602-1.75 0-1.381 1.119-2.5 2.5-2.5s2.5 1.119 2.5 2.5c0 0.773-0.237 1.32-0.602 1.75zM18.898 14.5c0.361 0.45 0.602 1.023 0.602 1.75 0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5c0-0.727 0.241-1.3 0.602-1.75-0.365-0.43-0.602-0.977-0.602-1.75 0-1.381 1.119-2.5 2.5-2.5s2.5 1.119 2.5 2.5c0 0.773-0.237 1.32-0.602 1.75z"></path>
+              </svg>
+              <div className="flex items-center mb-6">
+                <div className="h-14 w-14 rounded-full overflow-hidden border-2 border-blue-200 shadow-inner">
+                  <motion.div 
+                    className="h-full w-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    MS
+                  </motion.div>
+                </div>
+                <div className="ml-4">
+                  <h4 className="font-semibold text-gray-900 text-lg">Mark Smith</h4>
+                  <p className="text-blue-500 text-sm font-medium">Volunteer</p>
                 </div>
               </div>
-              <p className="text-gray-600 italic">"Volunteering here has opened my eyes to the food insecurity in our community. The team is amazing and the impact is real."</p>
+              <p className="text-gray-600">"Volunteering here has opened my eyes to the food insecurity in our community. The team is amazing and the impact is real."</p>
+              <div className="mt-4 flex">
+                {[1, 2, 3, 4, 5].map(star => (
+                  <svg key={star} className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
             </motion.div>
             
             <motion.div 
-              className="bg-white p-6 rounded-lg shadow-sm border border-gray-100"
+              className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500 relative overflow-hidden"
               variants={fadeIn}
-              whileHover={{ y: -10, boxShadow: "0px 15px 30px rgba(0, 0, 0, 0.1)" }}
+              whileHover={{ y: -10, boxShadow: "0px 15px 30px rgba(59, 130, 246, 0.15)" }}
             >
-              <div className="flex items-center mb-4">
-                <motion.div 
-                  className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  AJ
-                </motion.div>
-                <div className="ml-3">
-                  <h4 className="font-semibold text-gray-900">Aisha Johnson</h4>
-                  <p className="text-gray-500 text-sm">Corporate Partner</p>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 opacity-50 rounded-bl-full -mt-8 -mr-8"></div>
+              <svg className="h-8 w-8 text-blue-400 mb-4 opacity-30" fill="currentColor" viewBox="0 0 32 32">
+                <path d="M10 8c-2.209 0-4 1.791-4 4v10c0 2.209 1.791 4 4 4h12c2.209 0 4-1.791 4-4v-10c0-2.209-1.791-4-4-4h-12zM10 10h12c1.105 0 2 0.895 2 2v10c0 1.105-0.895 2-2 2h-12c-1.105 0-2-0.895-2-2v-10c0-1.105 0.895-2 2-2zM15.398 14.5c0.361 0.45 0.602 1.023 0.602 1.75 0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5c0-0.727 0.241-1.3 0.602-1.75-0.365-0.43-0.602-0.977-0.602-1.75 0-1.381 1.119-2.5 2.5-2.5s2.5 1.119 2.5 2.5c0 0.773-0.237 1.32-0.602 1.75zM18.898 14.5c0.361 0.45 0.602 1.023 0.602 1.75 0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5c0-0.727 0.241-1.3 0.602-1.75-0.365-0.43-0.602-0.977-0.602-1.75 0-1.381 1.119-2.5 2.5-2.5s2.5 1.119 2.5 2.5c0 0.773-0.237 1.32-0.602 1.75z"></path>
+              </svg>
+              <div className="flex items-center mb-6">
+                <div className="h-14 w-14 rounded-full overflow-hidden border-2 border-blue-200 shadow-inner">
+                  <motion.div 
+                    className="h-full w-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    AJ
+                  </motion.div>
+                </div>
+                <div className="ml-4">
+                  <h4 className="font-semibold text-gray-900 text-lg">Aisha Johnson</h4>
+                  <p className="text-blue-500 text-sm font-medium">Corporate Partner</p>
                 </div>
               </div>
-              <p className="text-gray-600 italic">"Our company's partnership with this food donation initiative has been incredible. The team is professional and truly dedicated."</p>
+              <p className="text-gray-600">"Our company's partnership with this food donation initiative has been incredible. The team is professional and truly dedicated."</p>
+              <div className="mt-4 flex">
+                {[1, 2, 3, 4, 5].map(star => (
+                  <svg key={star} className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
             </motion.div>
           </motion.div>
         </div>
